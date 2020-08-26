@@ -1,4 +1,58 @@
+
+def es_primo(numero):
+    """ determina si un numero es primo
+
+        numero int cualquier entero
+        returns True o false
+    """
+    cantidad = 0
+    for i in range(1, numero + 1):
+        if numero % i == 0:
+            cantidad = cantidad + 1
+
+    if cantidad == 2:
+        return True
+    else:
+        return False
+
+
+def cantidad_primos(numero):
+    """ muestra la cantidad de primos que hay hasta el numero dado
+
+        numero int cualquier entero
+        returns muestra dentro de la misma función
+    """
+    for i in range(1, numero + 1):
+        cantidad = 0
+        contador = 1
+        while contador <= i:
+            if i % contador == 0:
+                cantidad = cantidad + 1
+
+            contador += 1
+
+        if cantidad == 2:
+            print('Es primo = ' + str(i))
+
+
+def es_par(numero):
+    """ determina si un numero es par
+
+        numero int cualquier entero
+        returns True o False
+    """ 
+    if numero % 2==0:
+        return True
+    else:
+        return False
+
+
 def conversor(moneda, tasa):
+    """ convierte un monto dado de una de las tres monedas a dolar 
+
+        moneda string tres opciones 
+        tasa float cualquier numero positivo
+    """
     pesos = input("¿Cuantos "+ moneda + " tienes?: ")
     pesos = float(pesos)
     dolares = pesos/tasa
@@ -32,8 +86,8 @@ def main():
     opcion = int(input('''     Que desea hacer?
         1. Adivina un numero
         2. Conversor de monedas
-        3. Saber si un numero es par
-        4. Saber si un numero es primo
+        3. Es par?
+        4. Es primo?
         5. Generar una contraseña
         6. Comparar edad
         7. Enumeracion Exhaustiva
@@ -42,9 +96,11 @@ def main():
         10. Factorial
         11.Fibonacci
      opcion: '''))
+
     if opcion == 1:
         print('******* Adivina un numero ******* ')
         adivina_numero()
+
     elif opcion == 2:
         opcion = 0
         while opcion < 1 or opcion > 3:
@@ -62,7 +118,34 @@ def main():
                 conversor('pesos Chilenos', 730)
             else: 
                 print('Elige una opcion valida')
-                
+
+    elif opcion == 3:
+        print('******* Saber si un numero es par ******* ')
+        numero=int(input("Introduzca un numero: "))
+        if es_par(numero):
+            print("Si es par")
+        else:
+            print("No es par")
+
+    elif opcion == 4:
+        opcion = 0
+        while opcion < 1 or opcion > 2:
+            print('******* Numeros primos ******* ')
+            opcion = int(input('''             Que operacion desea hacer?
+                1. Saber si un numero es primo
+                2. Cantidad de primos hasta el numero dado
+             opcion: '''))
+            numero=int(input("Introduzaca un numero: "))
+            if opcion == 1:
+                if es_primo(numero):
+                    print("Si es primo")
+                else: 
+                    print("No es primo")
+            elif opcion == 2:
+                cantidad_primos(numero)
+            else: 
+                print('Elige una opcion valida')
+
 
 
 if __name__ == '__main__':
