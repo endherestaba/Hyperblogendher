@@ -1,4 +1,33 @@
 
+
+def comparar_edad():
+    nombre1 = input('Introduzca el nombre de la primera persona: ')
+    edad1 = int(input('Cual es su edad: '))
+    nombre2 = input('Introduzca el nombre de la segunda persona: ')
+    edad2 = int(input('Y su edad es: '))
+    if edad1 > edad2:
+        return f'{nombre1}{edad1} es mayor que {nombre2}{edad2}'
+    elif edad1 < edad2:
+        return f'{nombre1}{edad1} es menor que {nombre2}{edad2}'
+    else: 
+        return f'{nombre1}{edad1} y {nombre2}{edad2} tienen la misma edad'
+
+
+def generar_contrasena():
+    import random
+    mayusculas = ['A', 'B', 'C']
+    minusculas = ['a', 'b', 'c']
+    simbolos = ['!', '#', '$']
+    numeros = ['1', '2', '3']
+    
+    contrasena = [] # declara que es una lista 
+    caracteres = mayusculas + minusculas + simbolos + numeros
+    for i in range(15):
+        caracter_random = random.choice(caracteres) # elige 1 caracter al azar dentro de la lista "caracteres" y lo guarda en "caracter_random"
+        contrasena.append(caracter_random) # agrega el "caracter_random" a la lista "contrasena"
+    return contrasena
+
+
 def es_primo(numero):
     """ determina si un numero es primo
 
@@ -22,18 +51,21 @@ def cantidad_primos(numero):
         numero int cualquier entero
         returns muestra dentro de la misma función
     """
+    cantidad = 0
     for i in range(1, numero + 1):
-        cantidad = 0
+        cant_divisible = 1
         contador = 1
-        while contador <= i:
+        while contador <= i and i > 1:
             if i % contador == 0:
-                cantidad = cantidad + 1
-
+                cant_divisible += 1
+            if contador > (i**0.5) or i == 2:
+                break
             contador += 1
 
-        if cantidad == 2:
+        if cant_divisible == 2:
+            cantidad += 1
             print('Es primo = ' + str(i))
-
+    print('Existen ' + str(cantidad) + ' primos')
 
 def es_par(numero):
     """ determina si un numero es par
@@ -56,7 +88,7 @@ def conversor(moneda, tasa):
     pesos = input("¿Cuantos "+ moneda + " tienes?: ")
     pesos = float(pesos)
     dolares = pesos/tasa
-    dolares = round(dolares,2)
+    dolares = round(dolares,2) # redondea a 2 decimales el numero
     dolares = str(dolares)
     print("Tienes USD" + dolares + " dolares")
 
@@ -93,7 +125,7 @@ def main():
         7. Enumeracion Exhaustiva
         8. Aproximacion
         9. Busqueda Binaria
-        10. Factorial
+        10.Factorial
         11.Fibonacci
      opcion: '''))
 
@@ -146,6 +178,16 @@ def main():
             else: 
                 print('Elige una opcion valida')
 
+    elif opcion == 5:
+        print('******* Generar contraseña ******* ')
+        contrasena = generar_contrasena()
+        contrasena = ''.join(contrasena) # Transforma una lista a string
+        print ('Tu contraseña es: ' + contrasena)
+        
+    elif opcion == 6:
+            print('******* Comparar edad ******* ')
+            print(comparar_edad())
+         
 
 
 if __name__ == '__main__':
